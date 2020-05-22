@@ -8,8 +8,6 @@ var botaoAdicionar = document.querySelector("#adicionar-paciente");
         
     var paciente = obtemPacienteDoFormulario(form);
 
-    var pacienteTr = mostraTr(paciente);
-
     var erros = validaPaciente(paciente)
 
     console.log(erros)
@@ -18,11 +16,8 @@ var botaoAdicionar = document.querySelector("#adicionar-paciente");
         return; //Return vazio para que ele pare.
     }
 
-    var tabela = document.querySelector("#tabela-pacientes"); //Acessa o tbody.
-
-    //Para que o parametro se torne filho da variavel tabela. Assim adicionando uma nova linha na tabela.
-    tabela.appendChild(pacienteTr);
-
+    adicionaPacienteNaTabela(paciente);
+    
     //Apagar os dados, depois que foi adicionado.
     form.reset();
     
@@ -30,6 +25,14 @@ var botaoAdicionar = document.querySelector("#adicionar-paciente");
     mensagensDeErro.innerHTML = ""
 
 })
+
+function adicionaPacienteNaTabela(paciente){
+    var pacienteTr = mostraTr(paciente);
+    var tabela = document.querySelector("#tabela-pacientes"); //Acessa o tbody.
+    //Para que o parametro se torne filho da variavel tabela. Assim adicionando uma nova linha na tabela.
+    tabela.appendChild(pacienteTr);
+    
+}
 
 function exibeMensagensDeErro(erros){
     var ul = document.querySelector("#mensagens-erro");
